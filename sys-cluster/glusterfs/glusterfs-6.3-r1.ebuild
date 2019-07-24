@@ -59,7 +59,7 @@ RDEPEND="!elibc_glibc? ( sys-libs/argp-standalone )
 	libressl? ( dev-libs/libressl:= )
 	dev-libs/userspace-rcu:=
 	net-libs/rpcsvc-proto
-	systemd? sys-apps/systemd
+	systemd? ( sys-apps/systemd )
 	sys-apps/util-linux"
 DEPEND="${RDEPEND}
 	virtual/acl
