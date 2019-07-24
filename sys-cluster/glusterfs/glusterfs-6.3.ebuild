@@ -20,7 +20,23 @@ HOMEPAGE="https://www.gluster.org/"
 
 LICENSE="|| ( GPL-2 LGPL-3+ )"
 SLOT="0"
-IUSE="debug emacs +fuse +georeplication infiniband ipv6 libressl +libtirpc rsyslog static-libs +syslog test vim-syntax +xml"
+IUSE="
+	debug
+	emacs
+	+fuse
+	+georeplication
+	infiniband
+	ipv6
+	libressl
+	+libtirpc
+	rsyslog
+	static-libs
+	+syslog
+	systemd
+	test
+	vim-syntax
+	+xml
+"
 
 REQUIRED_USE="georeplication? ( ${PYTHON_REQUIRED_USE} )
 	ipv6? ( libtirpc )"
@@ -43,6 +59,7 @@ RDEPEND="!elibc_glibc? ( sys-libs/argp-standalone )
 	libressl? ( dev-libs/libressl:= )
 	dev-libs/userspace-rcu:=
 	net-libs/rpcsvc-proto
+	systemd? sys-apps/systemd
 	sys-apps/util-linux"
 DEPEND="${RDEPEND}
 	virtual/acl
@@ -75,6 +92,8 @@ pkg_setup() {
 	# https://github.com/gluster/glusterfs/commit/0e50c4b3ea734456c14e2d7a578463999bd332c3
 	enewgroup gluster
 	enewuser gluster -1 -1 "${EPREFIX}"/var/run/gluster gluster
+
+	use systemd || mkdir -p /usr/lib/systemd/system
 }
 
 src_prepare() {
