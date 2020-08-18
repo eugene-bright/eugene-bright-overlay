@@ -23,6 +23,7 @@ RDEPEND="
 	dev-lua/luasec
 	net-libs/libnsl
 	net-libs/gnutls
+	dev-db/lmdb
 	dnstap? (
 		>=dev-libs/protobuf-3.0
 		dev-libs/protobuf-c
@@ -30,6 +31,9 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
+	>=dev-util/meson-0.46.0
+	virtual/pkgconfig
+	dev-util/ninja
 "
 
 pkg_setup() {
